@@ -48,7 +48,7 @@ namespace XLabs.Forms.Controls
 
             if (e.OldElement != null)
             {
-                e.OldElement.CheckedChanged -= CheckedChanged;
+                e.OldElement.PropertyChanged -= ElementOnPropertyChanged;
             }
 
             if(e.NewElement == null)
@@ -59,9 +59,6 @@ namespace XLabs.Forms.Controls
             if (Control == null)
             {
                 var radioButton = new NativeRadioButton();
-                radioButton.Checked += (s, args) => Element.Checked = true;
-                radioButton.Unchecked += (s, args) => Element.Checked = false;
-
                 SetNativeControl(radioButton);
             }
 
@@ -70,7 +67,6 @@ namespace XLabs.Forms.Controls
 
             UpdateFont();
 
-            Element.CheckedChanged += CheckedChanged;
             Element.PropertyChanged += ElementOnPropertyChanged;
         }
 
@@ -83,33 +79,27 @@ namespace XLabs.Forms.Controls
                 return;
             }
 
-            switch (propertyChangedEventArgs.PropertyName)
-            {
-                case "Checked":
-                    control.IsChecked = Element.Checked;
-                    break;
-                case "TextColor":
-                    control.Foreground = Element.TextColor.ToBrush();
-                    break;
-                case "FontName":
-                case "FontSize":
-                    UpdateFont();
-                    break;
-                case "Text":
-                    control.Content = Element.Text;
-                    break;
-                default:
-                    System.Diagnostics.Debug.WriteLine("Property change for {0} has not been implemented.", propertyChangedEventArgs.PropertyName);
-                    break;
-            }
-        }
-
-        private void CheckedChanged(object sender, EventArgs<bool> eventArgs)
-        {
             Device.BeginInvokeOnMainThread(() =>
             {
-                Control.Content = Element.Text;
-                Control.IsChecked = eventArgs.Value;
+                switch (propertyChangedEventArgs.PropertyName)
+                {
+                    case "Checked":
+                        control.IsChecked = Element.Checked;
+                        break;
+                    case "TextColor":
+                        control.Foreground = Element.TextColor.ToBrush();
+                        break;
+                    case "FontName":
+                    case "FontSize":
+                        UpdateFont();
+                        break;
+                    case "Text":
+                        control.Content = Element.Text;
+                        break;
+                    default:
+                        System.Diagnostics.Debug.WriteLine("Property change for {0} has not been implemented.", propertyChangedEventArgs.PropertyName);
+                        break;
+                }
             });
         }
 
