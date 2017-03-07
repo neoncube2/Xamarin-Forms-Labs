@@ -48,10 +48,11 @@ namespace XLabs.Forms.Controls
 
             if (e.OldElement != null)
             {
+                e.OldElement.CheckedChanged -= CheckedChanged;
                 e.OldElement.PropertyChanged -= ElementOnPropertyChanged;
             }
 
-            if(e.NewElement == null)
+            if (e.NewElement == null)
             {
                 return;
             }
@@ -59,14 +60,36 @@ namespace XLabs.Forms.Controls
             if (Control == null)
             {
                 var radioButton = new NativeRadioButton();
+
                 SetNativeControl(radioButton);
+
+                radioButton.Checked += (s, args) =>
+                {
+                    CustomRadioButton element = Element;
+
+                    if (element != null)
+                    {
+                        element.Checked = true;
+                    }
+                };
+
+                radioButton.Unchecked += (s, args) =>
+                {
+                    CustomRadioButton element = Element;
+
+                    if (element != null)
+                    {
+                        element.Checked = false;
+                    }
+                };
             }
 
-            Control.Content = e.NewElement.Text;
-            Control.IsChecked = e.NewElement.Checked;
+            Control.Content = Element.Text;
+            Control.IsChecked = Element.Checked;
 
             UpdateFont();
 
+            Element.CheckedChanged += CheckedChanged;
             Element.PropertyChanged += ElementOnPropertyChanged;
         }
 
@@ -100,6 +123,15 @@ namespace XLabs.Forms.Controls
                         System.Diagnostics.Debug.WriteLine("Property change for {0} has not been implemented.", propertyChangedEventArgs.PropertyName);
                         break;
                 }
+            });
+        }
+
+        private void CheckedChanged(object sender, EventArgs<bool> eventArgs)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                Control.Content = Element.Text;
+                Control.IsChecked = eventArgs.Value;
             });
         }
 
