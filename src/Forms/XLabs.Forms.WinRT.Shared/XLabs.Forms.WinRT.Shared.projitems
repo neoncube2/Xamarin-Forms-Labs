@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\CheckBox\CheckBoxRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExtendedSwitch\ExtendedSwitchRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\HybridWebView\HybridWebViewRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ImageButton\ImageButtonRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\RadioButton\RadioButtonRenderer.cs" />
