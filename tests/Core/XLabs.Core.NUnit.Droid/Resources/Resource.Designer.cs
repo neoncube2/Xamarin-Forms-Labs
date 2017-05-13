@@ -28,7 +28,6 @@ namespace XLabs.Core.NUnit.Droid
 		{
 			global::Nunit.Runner.Resource.String.ApplicationName = global::XLabs.Core.NUnit.Droid.Resource.String.ApplicationName;
 			global::Nunit.Runner.Resource.String.Hello = global::XLabs.Core.NUnit.Droid.Resource.String.Hello;
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::XLabs.Core.NUnit.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Attribute

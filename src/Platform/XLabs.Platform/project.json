@@ -1,10 +1,9 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
-    "ExifLib.PCL": "1.0.2-pre01",
-    "NETStandard.Library": "1.6.0"
+    "ExifLib.PCL": "1.0.2-pre01"
   },
   "frameworks": {
-    "netstandard1.0": {}
+    ".NETPortable,Version=v4.5,Profile=Profile78": {}
   }
 }

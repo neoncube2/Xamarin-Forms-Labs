@@ -1,27 +1,10 @@
-﻿{
+{
   "supports": {},
   "dependencies": {
+    "System.Runtime.Serialization.Json": "4.0.2",
+    "System.Runtime.Serialization.Xml": "4.1.1"
   },
-
   "frameworks": {
-    "netstandard1.0": {
-      "dependencies": {
-        "NETStandard.Library": "1.6.0",
-        "System.Runtime.Serialization.Json": "4.0.2",
-        "System.Runtime.Serialization.Xml": "4.1.1"
-      }
-    },
-    "wpa81": {
-      "dependencies": {
-      }
-    },
-    "win8": {
-      "dependencies": {
-      }
-    },
-    "wp8": {
-      "dependencies": {
-      }
-    } 
+    ".NETPortable,Version=v4.5,Profile=Profile78": {}
   }
 }
