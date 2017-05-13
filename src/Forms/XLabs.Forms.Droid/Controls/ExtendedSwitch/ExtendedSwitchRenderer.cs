@@ -41,13 +41,6 @@ namespace XLabs.Forms.Controls
 		/// <param name="e">The e.</param>
 		protected override void OnElementChanged(ElementChangedEventArgs<ExtendedSwitch> e)
 		{
-			if (this.Control == null)
-			{
-				var toggle = new Switch(this.Context);
-				toggle.CheckedChange += ControlValueChanged;
-				this.SetNativeControl(toggle);
-			}
-
 			base.OnElementChanged(e);
 
 			if (e.OldElement != null)
@@ -57,7 +50,12 @@ namespace XLabs.Forms.Controls
 
 			if (e.NewElement != null)
 			{
-				this.Control.Checked = e.NewElement.IsToggled;
+                var toggle = new Switch(this.Context);
+                toggle.CheckedChange += ControlValueChanged;
+
+                this.SetNativeControl(toggle);
+
+                this.Control.Checked = e.NewElement.IsToggled;
 				this.SetTintColor(this.Element.TintColor);
 				this.Element.Toggled += ElementToggled;
 			}
